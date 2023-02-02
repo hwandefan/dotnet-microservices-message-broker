@@ -1,9 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1704.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNetMicroserviceSolution", "dotNetMicroserviceSolution\dotNetMicroserviceSolution.csproj", "{24700CA7-9264-4218-9124-4BEAAEB6A0F2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{49097D12-4F4A-4D5A-B441-48A2AB3419D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerWebApi", "CustomerWebApi\CustomerWebApi.csproj", "{99125500-EFEF-464D-90D3-EAFFC820E995}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C8F630E8-ABA3-4C78-ADB6-F88D2725F144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +15,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{24700CA7-9264-4218-9124-4BEAAEB6A0F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24700CA7-9264-4218-9124-4BEAAEB6A0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24700CA7-9264-4218-9124-4BEAAEB6A0F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24700CA7-9264-4218-9124-4BEAAEB6A0F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99125500-EFEF-464D-90D3-EAFFC820E995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99125500-EFEF-464D-90D3-EAFFC820E995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99125500-EFEF-464D-90D3-EAFFC820E995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99125500-EFEF-464D-90D3-EAFFC820E995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F630E8-ABA3-4C78-ADB6-F88D2725F144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F630E8-ABA3-4C78-ADB6-F88D2725F144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F630E8-ABA3-4C78-ADB6-F88D2725F144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F630E8-ABA3-4C78-ADB6-F88D2725F144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B211369-EEC6-4F4B-989C-00D68D484409}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{99125500-EFEF-464D-90D3-EAFFC820E995} = {49097D12-4F4A-4D5A-B441-48A2AB3419D2}
 	EndGlobalSection
 EndGlobal
