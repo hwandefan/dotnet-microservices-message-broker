@@ -13,7 +13,17 @@ services:
      networks:
        - backend
      ports:
-       - 8001:1433
+       - "8010:1433"
+   orderdb:
+     container_name: order-db
+     image: mcr.microsoft.com/azure-sql-edge
+     environment:
+       - ACCEPT_EULA=Y
+       - SA_PASSWORD=your_password123
+     networks:
+       - backend
+     ports:
+       - "8020:1433"
    customerwebapi:
      image: ${DOCKER_REGISTRY-}customerwebapi
      build:
@@ -22,8 +32,21 @@ services:
      networks:
        - backend
      ports:
-       - 8002:80
+       - "8040:80"
      environment:
        - DB_HOST=customerdb
        - DB_NAME=customer
        - DB_SA_PASSWORD=your_password123
+   orderapi:
+     image: ${DOCKER_REGISTRY-}orderapi
+     build:
+       context: .
+       dockerfile: Microservices/OrderApi/Dockerfile
+     networks:
+        - backend
+     ports:
+        - "8030:80"
+     environment:
+        - DB_HOST=orderdb
+        - DB_NAME=order
+        - DB_SA_PASSWORD=your_password123
