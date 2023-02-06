@@ -49,9 +49,9 @@ namespace OrderApi.Controllers
         }
 
         [HttpDelete("{orderId:int}")]
-        public async Task<ActionResult> DeleteById(int id)
+        public async Task<ActionResult> DeleteById(int orderId)
         {
-            var order = await _db.Orders.FindAsync(id);
+            var order = await _db.Orders.FindAsync(orderId);
             _db.Orders.Remove(order);
             await _db.SaveChangesAsync();
             return Ok();
