@@ -49,9 +49,9 @@ namespace CustomerWebApi.Controllers
         }
 
         [HttpDelete("{customerId:int}")]
-        public async Task<ActionResult> DeleteById(int id)
+        public async Task<ActionResult> DeleteById(int customerId)
         {
-            var customer = await _db.Customers.FindAsync(id);
+            var customer = await _db.Customers.FindAsync(customerId);
             _db.Customers.Remove(customer);
             await _db.SaveChangesAsync();
             return Ok();

@@ -52,4 +52,15 @@
 
     }
 
+    private async Task UpdateCustomer(CustomerViewModel customer)
+    {
+
+    }
+
+    private async Task DeleteCustomer(int customerId)
+    {
+        var result = await httpClient.DeleteAsync($"/api/Customer/{customerId}");
+        await GetCustomers();
+    }
+
 }
