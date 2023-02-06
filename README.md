@@ -10,5 +10,5 @@
 <li>Order Web Api Container</li>
 <li>Customer Web Api Container</li>
 <li>Blazor Web UI Container</li>
-<li>Api Gateway which provide connection between other containers</li>
+<li>Api Gateway which provides connection between other containers</li>
 </ul>
