@@ -1,8 +1,10 @@
-﻿@page "/counter"
+﻿@page "/order"
+@using BlazorServerWebUI.Models
+@inject HttpClient httpClient
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Order</PageTitle>
 
-<h1>Counter</h1>
+<h1>Order</h1>
 
 <p role="status">Current count: @currentCount</p>
 
@@ -16,4 +18,3 @@
         currentCount++;
     }
 }
-
