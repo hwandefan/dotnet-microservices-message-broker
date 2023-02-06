@@ -3,18 +3,53 @@
 @inject HttpClient httpClient
 
 <PageTitle>Customer</PageTitle>
+<tbody>
+    <tr>
+        <td><input class="form-control" @bind="newCustomer.CustomerName" placeholder="Name" /></td>
+        <td><input class="form-control" @bind="newCustomer.MobileNumber" placeholder="Mobile" /></td>
+        <td><input class="form-control" @bind="newCustomer.Email" placeholder="Email" /></td>
+        <td><a @onclick="SaveCustomer" href="javascript:void(0)"><button type="button" class="btn btn-success">Add</button></a></td>
+        <td></td>
+    </tr>
+    @*TODO Does not work normaly!*@
+    @if (customers != null && customers.Count != 0)
+    {
+        foreach (var customer in customers)
+        {
+            <CustomerRecord Customer="customer"
+                            UpdateCustomer="UpdateCustomer"
+                            DeleteCustomer="DeleteCustomer">
 
-<h1>Customer</h1>
+            </CustomerRecord>
+        }
+    }
+    else
+    {
+        <tr>
+            <td class="text-center" colspan="5">No customer records to display</td>
+        </tr>
+    }
+</tbody>
 
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int currentCount = 0;
+    private List<CustomerViewModel> customers;
+    private CustomerViewModel newCustomer = new CustomerViewModel();
 
-    private void IncrementCount()
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        base.OnInitializedAsync();
+        await GetCustomers();
     }
+
+    private async Task GetCustomers()
+    {
+        customers = await httpClient.GetFromJsonAsync<List<CustomerViewModel>>("/api/Customer");
+    }
+
+    private async Task SaveCustomer()
+    {
+
+    }
+
 }
