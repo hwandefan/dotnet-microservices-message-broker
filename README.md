@@ -2,7 +2,7 @@
 
 <b>Example of a .NET application which works with docker-compose and ocelot api-gateway.</b>
 <hr />
-List of containers:
+<b>List of containers:</b>
 <br />
 <ul>
 <li>Order Database Container</li>
