@@ -3,6 +3,7 @@
 @inject HttpClient httpClient
 
 <PageTitle>Customer</PageTitle>
+<h1>Customer</h1>
 <tbody>
     <tr>
         <td><input class="form-control" @bind="newCustomer.CustomerName" placeholder="Name" /></td>
@@ -49,12 +50,15 @@
 
     private async Task SaveCustomer()
     {
-
+        await httpClient.PostAsJsonAsync<CustomerViewModel>("/api/Customer",newCustomer);
+        await GetCustomers();
+        newCustomer = new CustomerViewModel();
     }
 
     private async Task UpdateCustomer(CustomerViewModel customer)
     {
-
+        await httpClient.PutAsJsonAsync<CustomerViewModel>("/api/Customer", customer);
+        await GetCustomers();
     }
 
     private async Task DeleteCustomer(int customerId)
