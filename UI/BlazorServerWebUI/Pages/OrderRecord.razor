@@ -1,0 +1,48 @@
+﻿@inject HttpClient httpClient
+@using BlazorServerWebUI.Models
+
+@if (!isEditMode)
+{
+    <tr>
+        <td>@Order.Name</td>
+        <td>@Order.Customer_Id</td>
+        <td>
+            <a @onclick="() =>{ isEditMode = true; }" href="javascript:void(0)">
+                <button type="button" class="btn btn-warning">Edit</button>
+            </a>
+        </td>
+        <td>
+            <a @onclick="async () => await DeleteOrder.InvokeAsync(Order.Order_Id)" href="javascript:void(0)">
+                <button type="button" class="btn btn-danger">Delete</button>
+            </a>
+        </td>
+    </tr>
+}
+else
+{
+    <tr>
+        <td><input class="form-control" @bind="Order.Name" placeholder="Name" /></td>
+        <td><input class="form-control" @bind="Order.Customer_Id" placeholder="Customer ID" /></td>
+        <td>
+            <a @onclick="async () => {await UpdateOrder.InvokeAsync(Order);isEditMode = false;}" href="javascript:void(0)">
+                <button type="button" class="btn btn-info">Save</button>
+            </a>
+        </td>
+        <td></td>
+    </tr>
+}
+
+@code {
+    private bool isEditMode = false;
+
+    [Parameter]
+    public OrderViewModel Order { get; set; }
+
+    [Parameter]
+    public EventCallback<OrderViewModel> UpdateOrder { get; set; }
+
+    [Parameter]
+    public EventCallback<int> DeleteOrder { get; set; }
+
+}
+
