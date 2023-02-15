@@ -5,8 +5,63 @@
 <PageTitle>Order</PageTitle>
 
 <h1>Order</h1>
+<tbody>
+    <tr>
+        <td><input class="form-control" @bind="newOrder.Name" placeholder="Name" /></td>
+        <td><input class="form-control" @bind="newOrder.Customer_Id" placeholder="Customer ID" /></td>
+        <td><a @onclick="SaveOrder" href="javascript:void(0)"><button type="button" class="btn btn-success">Add</button></a></td>
+        <td></td>
+    </tr>
+    @if (orders != null && orders.Count != 0)
+    {
+        foreach (var order in orders)
+        {
+            <OrderRecord Order="order"
+                            UpdateOrder="UpdateOrder"
+                            DeleteOrder="DeleteOrder">
 
+            </OrderRecord>
+        }
+    }
+    else
+    {
+        <tr>
+            <td class="text-center" colspan="5">No orders to display</td>
+        </tr>
+    }
+</tbody>
 
 @code {
+    private OrderViewModel newOrder = new OrderViewModel();
+    private List<OrderViewModel> orders;
 
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitializedAsync();
+        await GetOrders();
+    }
+
+    private async Task GetOrders()
+    {
+        orders = await httpClient.GetFromJsonAsync<List<OrderViewModel>>("/api/Order");
+    }
+
+    private async Task SaveOrder()
+    {
+        await httpClient.PostAsJsonAsync<OrderViewModel>("/api/Order", newOrder);
+        await GetOrders();
+        newOrder = new OrderViewModel();
+    }
+
+    private async Task UpdateOrder(OrderViewModel order)
+    {
+        await httpClient.PutAsJsonAsync<OrderViewModel>("/api/Order", order);
+        await GetOrders();
+    }
+
+    private async Task DeleteOrder(int orderId)
+    {
+        var result = await httpClient.DeleteAsync($"/api/Order/{orderId}");
+        await GetOrders();
+    }
 }
